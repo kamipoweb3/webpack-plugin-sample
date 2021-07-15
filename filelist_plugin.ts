@@ -1,7 +1,11 @@
+import * as webpack from 'webpack';
+
 class FileListPlugin {
   static defaultOptions = {
     outputFile: 'assets.md',
   };
+
+  options: any = {}
 
   // Any options should be passed in the constructor of your plugin,
   // (this is a public API of your plugin).
@@ -12,7 +16,7 @@ class FileListPlugin {
     this.options = { ...FileListPlugin.defaultOptions, ...options };
   }
 
-  apply(compiler) {
+  apply(compiler: webpack.Compiler) {
     const pluginName = FileListPlugin.name;
 
     // webpack module instance can be accessed from the compiler object,
@@ -64,4 +68,4 @@ class FileListPlugin {
   }
 }
 
-module.exports = { FileListPlugin };
+export default FileListPlugin;

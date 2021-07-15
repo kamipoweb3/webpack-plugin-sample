@@ -1,13 +1,17 @@
-const { FileListPlugin } = require('./file-list-plugin.js');
+import * as path from 'path';
+import * as webpack from 'webpack';
+import FileListPlugin from "./filelist_plugin"
 
-// Use the plugin in your webpack configuration:
-module.exports = {
+const config: webpack.Configuration = {
   mode: "development",
   entry: './src/index.ts',
   module: {
     rules: [
       { test: /\.ts$/, use: 'ts-loader' },
     ],
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
     // Adding the plugin with the default options
@@ -20,4 +24,7 @@ module.exports = {
       outputFile: 'my-assets.md',
     }),
   ],
+
 };
+
+export default config;
