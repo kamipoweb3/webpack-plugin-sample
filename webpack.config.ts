@@ -4,13 +4,22 @@ import FileListPlugin from "./filelist_plugin"
 
 const config: webpack.Configuration = {
   mode: "development",
-  entry: './src/index.ts',
+  entry: ['./src/index.ts', './src/second.ts'],
   module: {
     rules: [
-      { test: /\.ts$/, use: 'ts-loader' },
+      { 
+        test: /\.ts$/,
+        use: {
+          loader: path.resolve(__dirname, "./loader/index.ts"),
+          options: {
+            hoge: "foo"
+          }
+        },
+      }
     ],
   },
   output: {
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
